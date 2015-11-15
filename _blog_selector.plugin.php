@@ -154,6 +154,7 @@ class blog_selector_plugin extends Plugin
 
 		
 		$select_options = '';
+		$select_options .= '<option value="-1"> - Select - </option>';
 		foreach( $blog_array as $l_blog_ID )
 		{	// Loop through all public blogs:
 			$l_Blog = & $BlogCache->get_by_ID( $l_blog_ID );
@@ -174,7 +175,7 @@ class blog_selector_plugin extends Plugin
     margin-bottom: 5px;
     max-width: 100%;
     padding: 0.2em;" class="control-label">' . $params['title'] . '</label>';
-			echo '<select name="blog" class="blog_sel_w chosen" data-placeholder="-Select a blog-">'.$select_options .'</select>';
+			echo '<select name="blog" class="blog_sel_w chosen">'.$select_options .'</select>';
 			echo '</div>';
 			echo '</div>';
 			echo '<noscript><input type="submit" value="'.T_('Go').'" /></noscript></form>';
