@@ -1,8 +1,15 @@
 select.blog_sel_w {
 	min-width: 7em;
 }
+label.blog_sel_lbl {
+    display: inline-block;
+    font-weight: normal;
+    margin-bottom: 5px;
+    max-width: 100%;
+    padding: 0.2em;
+}
 select.chosen + .chosen-container {
-	   width: auto !important;
+	width: auto !important;
 }
 
 select.chosen + .chosen-container.chosen-container-single .chosen-single {
