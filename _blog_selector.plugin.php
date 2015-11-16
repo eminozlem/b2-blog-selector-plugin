@@ -1,14 +1,9 @@
 <?php
 /**
- *
  * This file implements the Latest posts widget for {@link http://b2evolution.net/}.
- *
  * @copyright (c)2008 by Emin Özlem  - {@link http://eminozlem.com/}.
- *
  * @license GNU General Public License 2 (GPL) - http://www.opensource.org/licenses/gpl-license.php
- *
  * @package plugins
- *
  * @author Emin Özlem
  */
 if( !defined('EVO_MAIN_INIT') ) die( 'Please, do not access this page directly.' );
@@ -52,28 +47,30 @@ class blog_selector_plugin extends Plugin
 	function get_widget_param_definitions( $params )
 	{
 		return  array(
-				'title' => array(
-					'label' => T_( 'Title' ),
-					'size' => 40,
-					'note' => T_( 'This is the title to display, $icon$ will be replaced by the feed icon' ),
-					'defaultvalue' => T_('Select a blog'),
+			'title' => array(
+				'label' => T_( 'Title' ),
+				'size' => 40,
+				'note' => T_( 'This is the title to display, $icon$ will be replaced by the feed icon' ),
+				'defaultvalue' => T_('Select a blog'),
+			),
+			'order_by' => array(
+				'label' => T_('Order by'),
+				'note' => T_('How to sort the blogs'),
+				'type' => 'select',
+				'options' => get_coll_sort_options(),
+				'defaultvalue' => 'order',
+			),
+			'order_dir' => array(
+				'label' => T_('Direction'),
+				'note' => T_('How to sort the blogs'),
+				'type' => 'radio',
+				'options' => array( 
+					array( 'ASC', T_('Ascending') ),
+					array( 'DESC', T_('Descending') )
 				),
-				'order_by' => array(
-					'label' => T_('Order by'),
-					'note' => T_('How to sort the blogs'),
-					'type' => 'select',
-					'options' => get_coll_sort_options(),
-					'defaultvalue' => 'order',
-				),
-				'order_dir' => array(
-					'label' => T_('Direction'),
-					'note' => T_('How to sort the blogs'),
-					'type' => 'radio',
-					'options' => array( array( 'ASC', T_('Ascending') ),
-										array( 'DESC', T_('Descending') ) ),
-					'defaultvalue' => 'ASC',
-				),
-			);
+				'defaultvalue' => 'ASC',
+			),
+		);
 	}
 	
 	
@@ -170,18 +167,12 @@ class blog_selector_plugin extends Plugin
 			echo '<form class="" action="'.$baseurl.'" method="get">';
 			echo '<div class="form-group col-xs-12">';
 			echo '<div class="selwrap">';
-			echo '<label for="blog" style="display: inline-block;
-    font-weight: normal;
-    margin-bottom: 5px;
-    max-width: 100%;
-    padding: 0.2em;" class="control-label">' . $params['title'] . '</label>';
+			echo '<label for="blog" class="blog_sel_lbl control-label">' . $params['title'] . '</label>';
 			echo '<select name="blog" class="blog_sel_w chosen">'.$select_options .'</select>';
 			echo '</div>';
 			echo '</div>';
 			echo '<noscript><input type="submit" value="'.T_('Go').'" /></noscript></form>';
 		}
-
-		
 		echo $params['block_end'];
 	}
 }
